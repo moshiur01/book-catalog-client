@@ -54,6 +54,7 @@ export default function BookDetails() {
               alt=""
             />
           </div>
+
           <div className="w-1/2">
             <h2 className="text-2xl max-w-md text-slate-700 font-medium mt-5">
               {title}
@@ -73,11 +74,31 @@ export default function BookDetails() {
               <span className="font-medium">{publication}</span>
             </p>
 
-            <p className="mt-5">
+            <p className="mt-5 w-auto">
               <span className="font-medium">Summary: </span>{" "}
               {summary ? summary : defaultSummary}
             </p>
           </div>
+        </div>
+        <div className="text-left ml-[380px] mt-5">
+          {user && user.email === creator && (
+            <>
+              <button
+                onClick={() => navigate(`/edit-book/${_id}`)}
+                className="bg-blue-100 p-1.5 hover:text-white hover:bg-blue-500 rounded-md transition-all duration-150 mx-2"
+              >
+                <MdOutlineModeEditOutline size={22} />
+              </button>
+              <button
+                onClick={() =>
+                  dispatch(handleDeleteBookModal({ isOpen: true, _id: _id }))
+                }
+                className="bg-red-100 p-1.5 hover:text-white hover:bg-red-500 rounded-md transition-all duration-150 mx-2"
+              >
+                <MdOutlineDeleteOutline size={22} />
+              </button>{" "}
+            </>
+          )}
         </div>
         <Reviews id={id} />
       </div>
@@ -85,28 +106,7 @@ export default function BookDetails() {
   }
 
   return (
-    <div className="container mx-auto ">
-      <div className="text-right py-5">
-        {user && user.email === creator && (
-          <>
-            <button
-              onClick={() => navigate(`/edit-book/${_id}`)}
-              className="bg-blue-100 p-1.5 hover:text-white hover:bg-blue-500 rounded-md transition-all duration-150 mx-2"
-            >
-              <MdOutlineModeEditOutline size={22} />
-            </button>
-            <button
-              onClick={() =>
-                dispatch(handleDeleteBookModal({ isOpen: true, _id: _id }))
-              }
-              className="bg-red-100 p-1.5 hover:text-white hover:bg-red-500 rounded-md transition-all duration-150 mx-2"
-            >
-              <MdOutlineDeleteOutline size={22} />
-            </button>{" "}
-          </>
-        )}
-      </div>
-
+    <div className="container mx-60 my-10">
       <div>{content}</div>
 
       <DeleteBookModal />

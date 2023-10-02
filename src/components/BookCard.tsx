@@ -78,7 +78,27 @@ export default function BookCard({
   };
 
   return (
-    <div className="card mx-auto card-compact bg-base-100 shadow-xl w-64 md:w-72">
+    <div className="card mx-auto card-compact bg-base-100 shadow-xl w-64 md:w-72 relative">
+      {/* Badge */}
+      <div className="absolute top-0 left-0">
+        <div className="bg-blue-600 text-white px-2 py-1 rounded-tl-md rounded-br-md">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="inline-block w-4 h-4 stroke-current mr-2"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+          {genre}
+        </div>
+      </div>
+
       <figure>
         <img
           onClick={() => navigate(`/books/${_id}`)}
@@ -91,14 +111,15 @@ export default function BookCard({
         <h2
           title="Title"
           onClick={() => navigate(`/books/${_id}`)}
-          className="card-title cursor-pointer capitalize"
+          className="card-title cursor-pointer capitalize mx-auto "
         >
           {title}
         </h2>
         <p title="Author" className="font-bold text-slate-500 capitalize">
           {author}
         </p>
-        <div className="flex justify-between items-center">
+
+        <div className="flex justify-between items-center ">
           <p className="flex items-center gap-2">
             <span>
               <AiOutlineClockCircle size={20} />
@@ -108,15 +129,7 @@ export default function BookCard({
             </span>
           </p>
 
-          <div>
-            <p title="Genre" className="badge badge-outline capitalize">
-              {genre}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex justify-between items-center mt-5">
-          <div>
+          <div className="flex items-center gap-2">
             <button
               onClick={handleReadingFunc}
               title="Currently reading"
@@ -128,30 +141,30 @@ export default function BookCard({
                 <BsBook size={24} />
               )}
             </button>
-          </div>
-          {status && location.pathname === "/currently-reading" && (
-            <div>
-              <select
-                onChange={(e) =>
-                  updateReadingStatus({
-                    id: readingId,
-                    data: { status: e.target.value },
-                  })
-                }
-                className={`border ${
-                  status === "completed" ? "bg-green-200" : "bg-slate-200"
-                } rounded-full p-0.5 focus:outline-none cursor-pointer`}
-              >
-                <option selected={status === "running"} value="running">
-                  Running
-                </option>
-                <option selected={status === "completed"} value="completed">
-                  Completed
-                </option>
-              </select>
-            </div>
-          )}
-          <div>
+
+            {status && location.pathname === "/currently-reading" && (
+              <div>
+                <select
+                  onChange={(e) =>
+                    updateReadingStatus({
+                      id: readingId,
+                      data: { status: e.target.value },
+                    })
+                  }
+                  className={`border ${
+                    status === "completed" ? "bg-green-200" : "bg-slate-200"
+                  } rounded-full p-0.5 focus:outline-none cursor-pointer`}
+                >
+                  <option selected={status === "running"} value="running">
+                    Running
+                  </option>
+                  <option selected={status === "completed"} value="completed">
+                    Completed
+                  </option>
+                </select>
+              </div>
+            )}
+
             <button
               onClick={handleWishlistFunc}
               title="Wishlist"

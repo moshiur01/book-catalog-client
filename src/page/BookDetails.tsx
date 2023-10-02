@@ -31,9 +31,9 @@ export default function BookDetails() {
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const { data: book, isLoading, isError } = useGetSingleBookQuery(id);
+  const { data, isLoading, isError } = useGetSingleBookQuery(id);
   const { _id, title, author, genre, publication, creator, image, summary } =
-    book?.data || {};
+    data || {};
 
   let content = null;
 

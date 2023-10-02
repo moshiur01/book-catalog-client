@@ -8,10 +8,7 @@ import Error from "../shared/Error";
 import Loading from "../shared/Loading";
 
 export default function HomeBook() {
-  const queryString = "";
-
-  const { data: allBooks, isLoading, isError } = useGetBooksQuery(queryString);
-  const { data } = allBooks || {};
+  const { data, isLoading, isError } = useGetBooksQuery(undefined);
 
   const newData = data?.slice(0, 10);
 

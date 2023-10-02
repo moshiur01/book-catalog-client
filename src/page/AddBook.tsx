@@ -183,7 +183,7 @@ export default function AddBook() {
         <div className="mb-4">
           <label
             htmlFor="summary"
-            className="block text-lg font-medium text-gray-800"
+            className="block w-4 text-md font-medium text-gray-800"
           >
             Summary
           </label>

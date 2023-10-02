@@ -45,8 +45,10 @@ export default function Books() {
   const { data: allBooks, isLoading, isError } = useGetBooksQuery(queryString);
   const { data } = allBooks || {};
 
-  const genres = [...new Set(data?.map((item: { genre: any; }) => item.genre))];
-  const years = [...new Set(data?.map((item: { publication: any; }) => item.publication))];
+  const genres = [...new Set(data?.map((item: { genre: any }) => item.genre))];
+  const years = [
+    ...new Set(data?.map((item: { publication: any }) => item.publication)),
+  ];
 
   let content = null;
 
@@ -62,7 +64,7 @@ export default function Books() {
     );
   } else if (!isLoading && !isError && data?.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 px-5 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 px-5 mt-5 text-center">
         {data?.map((book: IBookResponse) => (
           <BookCard book={book} key={book._id} status={""} readingId={""} />
         ))}
@@ -77,19 +79,13 @@ export default function Books() {
         <div className="drawer-content">
           {/* Page content here */}
           <div>
-            <div className=" px-5 flex items-center justify-between">
-              <button
-                className="bg-slate-300 px-3 py-1 rounded-md"
-                onClick={() => navigate("/add-new-book")}
-              >
-                Add Book
-              </button>
+            <div className=" px-5 flex items-center justify-end">
               <input
                 onChange={(e) => dispatch(handleSearchTerm(e.target.value))}
                 value={searchTerm}
                 type="text"
-                placeholder="Search"
-                className="input w-full max-w-xs h-10 focus:outline-none border-violet-600"
+                placeholder="Search your book"
+                className="input w-full max-w-xs h-10 focus:outline-none border-sky-700"
               />
             </div>
           </div>
@@ -104,7 +100,7 @@ export default function Books() {
         </div>
         <div className="drawer-side z-20">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <div className="menu p-4 w-64 h-screen bg-base-200 text-base-content z-20">
+          <div className="menu p-4 w-64 h-auto bg-base-200 text-base-content z-20 rounded-lg mt-[62px]">
             {/* Sidebar content here */}
             <div>
               <p className="text-base font-medium">Genre</p>

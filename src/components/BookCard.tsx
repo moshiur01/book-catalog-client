@@ -133,7 +133,7 @@ export default function BookCard({
             <button
               onClick={handleReadingFunc}
               title="Currently reading"
-              className="text-violet-600"
+              className="text-sky-600"
             >
               {readingIncluded ? (
                 <BsBookHalf size={24} />
@@ -168,7 +168,7 @@ export default function BookCard({
             <button
               onClick={handleWishlistFunc}
               title="Wishlist"
-              className="text-red-600"
+              className="text-green-600"
             >
               {wishlistIncluded ? (
                 <FcBookmark size={27} />

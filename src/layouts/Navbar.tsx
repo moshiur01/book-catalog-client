@@ -17,7 +17,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="drawer fixed top backdrop-blur-lg bg-white/60 z-20 lg:z-30">
+    <div className="drawer fixed top backdrop-blur-lg bg-white/60 z-20 lg:z-30 border-b-[1px] border-sky-700">
       <input id="navbar-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}

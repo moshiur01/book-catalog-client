@@ -49,7 +49,7 @@ export default function BookDetails() {
         <div className="flex justify-center lg:gap-10">
           <div className="w-1/2 hidden lg:flex justify-end">
             <img
-              className="max-w-sm"
+              className="max-w-sm h-72 mx-40"
               src={image ? image : defaultImage}
               alt=""
             />

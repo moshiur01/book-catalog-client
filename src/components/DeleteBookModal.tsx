@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function DeleteBookModal() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { deleteBookModal, bookDeleteId } = useAppSelector(
     (state) => state.book
   );
@@ -23,7 +23,7 @@ export default function DeleteBookModal() {
 
   useEffect(() => {
     if (isSuccess) {
-        navigate("/books")
+      navigate("/books");
       toast.success("Successfully deleted");
       dispatch(handleDeleteBookModal({ isOpen: false, _id: "" }));
     }
@@ -32,17 +32,13 @@ export default function DeleteBookModal() {
   return (
     deleteBookModal && (
       <div className="fixed w-full h-full inset-0 z-50 bg-black/70 poppins">
-        <div className="rounded w-full max-w-lg space-y-8 bg-white p-10 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
+        <div className="rounded w-full max-w-lg space-y-8 text-center bg-white p-10 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
           <div>
             <p className="text-red-500 font-semibold">
               Are you sure you want to delete this book ?
             </p>
 
-            <p className="text-red-500 mt-3 text-sm">
-              Once you delete it, you can,t bring it back.
-            </p>
-
-            <div className="mt-5 flex justify-end gap-5">
+            <div className="mt-5 flex justify-center gap-5 ">
               <button
                 onClick={dandleDelete}
                 className="py-2 px-4 bg-red-500 text-white rounded-md font-medium"

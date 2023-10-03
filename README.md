@@ -1,5 +1,3 @@
-### Front End Live Link:
+### Live Link: https://the-book-catalog.netlify.app/
 
-### Front End Github Link:
-
-### Back End Github Link:
+### Back End Github Link: https://github.com/moshiur01/book-cata-backend

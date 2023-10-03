@@ -16,7 +16,6 @@ export default function WishList() {
     isError,
   } = useGetWishlistQuery(user.email);
 
-
   let content = null;
 
   if (isLoading) {
@@ -26,7 +25,7 @@ export default function WishList() {
   } else if (!isLoading && !isError && wishlists?.data?.length === 0) {
     content = (
       <div className="text-center font-semibold text-lg poppins">
-        Oops! wishlist are empty
+        wishlist are empty
       </div>
     );
   } else if (!isLoading && !isError && wishlists?.data?.length > 0) {

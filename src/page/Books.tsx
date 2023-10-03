@@ -23,6 +23,8 @@ export default function Books() {
     window.scrollTo(0, 0);
   }, []);
 
+  const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   const { searchTerm, filterByGenre, filterByPublication } = useAppSelector(
     (state) => state.book
@@ -30,26 +32,23 @@ export default function Books() {
 
   let queryString = "";
 
-  const { data, isLoading, isError } = useGetBooksQuery(queryString);
+  if (searchTerm) {
+    queryString += `&searchTerm=${searchTerm}`;
+  }
+  if (filterByGenre) {
+    queryString += `&genre=${filterByGenre}`;
+  }
+  if (filterByPublication) {
+    queryString += `&publication=${filterByPublication}`;
+  }
+
+  const { data: allBooks, isLoading, isError } = useGetBooksQuery(queryString);
+  const { data } = allBooks || {};
 
   const genres = [...new Set(data?.map((item: { genre: any }) => item.genre))];
   const years = [
     ...new Set(data?.map((item: { publication: any }) => item.publication)),
   ];
-
-  let bookData;
-  if (filterByGenre) {
-    bookData = data?.filter((item) => item.genre === filterByGenre);
-  } else if (filterByPublication) {
-    bookData = data?.filter((item) => item.publication === filterByPublication);
-  } else if (searchTerm) {
-    const searchTermLC = searchTerm.toLowerCase();
-    bookData = data.filter((item) =>
-      item.title.toLowerCase().includes(searchTermLC)
-    );
-  } else {
-    bookData = data;
-  }
 
   let content = null;
 
@@ -65,8 +64,8 @@ export default function Books() {
     );
   } else if (!isLoading && !isError && data?.length > 0) {
     content = (
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 px-5 mt-5 text-center">
-        {bookData?.map((book: IBookResponse) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-7 px-5 mt-5 text">
+        {data?.map((book: IBookResponse) => (
           <BookCard book={book} key={book._id} status={""} readingId={""} />
         ))}
       </div>

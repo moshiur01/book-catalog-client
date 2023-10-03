@@ -8,7 +8,9 @@ import Error from "../shared/Error";
 import Loading from "../shared/Loading";
 
 export default function HomeBook() {
-  const { data, isLoading, isError } = useGetBooksQuery(undefined);
+  const queryString = "";
+  const { data: allBooks, isLoading, isError } = useGetBooksQuery(queryString);
+  const { data } = allBooks || {};
 
   const newData = data?.slice(0, 10);
 
@@ -36,7 +38,7 @@ export default function HomeBook() {
         <div className="my-10 text-center">
           <Link
             to="/books"
-            className="bg-cyan-700	 text-xl text-white py-2 px-5 rounded-md"
+            className="bg-cyan-700	 text-white py-1.5 px-3 rounded-md"
           >
             All Books
           </Link>

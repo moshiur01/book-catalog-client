@@ -25,7 +25,7 @@ export default function CurrentlyReading() {
   } else if (!isLoading && !isError && readings?.data?.length === 0) {
     content = (
       <div className="text-center font-semibold text-lg poppins">
-        Oops! reading list are empty
+        Reading list are empty
       </div>
     );
   } else if (!isLoading && !isError && readings?.data?.length > 0) {
@@ -33,7 +33,12 @@ export default function CurrentlyReading() {
       <div className="container mx-auto px-5">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {readings?.data?.map((book) => (
-            <BookCard book={book.book} status={book.status} readingId={book._id} key={book._id} />
+            <BookCard
+              book={book.book}
+              status={book.status}
+              readingId={book._id}
+              key={book._id}
+            />
           ))}
         </div>
       </div>

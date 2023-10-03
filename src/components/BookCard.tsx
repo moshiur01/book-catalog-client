@@ -102,7 +102,7 @@ export default function BookCard({
       <figure>
         <img
           onClick={() => navigate(`/books/${_id}`)}
-          className="h-56 w-full object-cover cursor-pointer"
+          className="h-56 w-full object-cover cursor-pointer rounded-lg"
           src={image ? image : defaultImage}
           alt="Shoes"
         />

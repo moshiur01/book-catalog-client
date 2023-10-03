@@ -90,6 +90,11 @@ export default function Navbar() {
                 {isLoggedIn && (
                   <>
                     <li>
+                      <span className="justify-between py-2 mb-2 font-medium">
+                        {user?.name}
+                      </span>
+                    </li>
+                    <li>
                       <Link
                         to="/wishlist"
                         className="justify-between py-2 mb-2 font-medium"

@@ -11,7 +11,12 @@ import { CiBookmark } from "react-icons/ci";
 import { IBookResponse } from "../types/globalTypes";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { BsBook, BsBookHalf, BsBookFill } from "react-icons/bs";
+import {
+  BsBook,
+  BsBookHalf,
+  BsBookFill,
+  BsFillBookmarkFill,
+} from "react-icons/bs";
 import {
   useGetWishlistQuery,
   useHandleWishlistMutation,
@@ -171,7 +176,7 @@ export default function BookCard({
               className="text-green-600"
             >
               {wishlistIncluded ? (
-                <FcBookmark size={27} />
+                <BsFillBookmarkFill size={22} />
               ) : (
                 <CiBookmark size={27} />
               )}

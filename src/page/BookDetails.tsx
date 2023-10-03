@@ -61,17 +61,19 @@ export default function BookDetails() {
             </h2>
             <p className="mt-2">
               by{" "}
-              <span className="text-violet-600 cursor-pointer">{author}</span>
+              <span className="text-sky-600-600 font-bold cursor-pointer">
+                {author}
+              </span>
             </p>
             <p className="mt-5">
               <span className="">Genre:</span>{" "}
-              <span className="text-violet-600 capitalize cursor-pointer">
+              <span className="text-sky-900 font-bold capitalize cursor-pointer">
                 {genre}
               </span>
             </p>
             <p className="mt-1">
               <span className="">Publication Year:</span>{" "}
-              <span className="font-medium">{publication}</span>
+              <span className="font-bold">{publication}</span>
             </p>
 
             <p className="mt-5 w-auto">

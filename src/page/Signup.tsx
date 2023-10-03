@@ -52,26 +52,28 @@ export default function Signup() {
         <img className="object-cover min-h-screen" src={LoginImg} alt="" />
       </div>
       <div className="flex-1 flex items-center justify-center h-screen px-5">
-        <div className="">
-          <h2 className="text-center text-xl md:text-3xl font-bold text-slate-700 font-mono mb-16 md:mb-24 ">
+        <div className="max-w-sm mx-auto">
+          <h2 className="text-center text-3xl font-bold text-slate-700 mb-10">
             Welcome To Book Catalog
           </h2>
 
-          <h2 className="text-center text-xl font-bold text-slate-700">
+          <h2 className="text-center text-2xl font-bold text-slate-700">
             SignUp
           </h2>
 
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="max-w-sm mx-auto mt-10 pb-20">
+            <div className="space-y-4 mt-6">
               <div>
-                <h3 className="poppins text-base font-medium mb-2 ">Name</h3>
+                <label className="block text-base font-medium text-slate-700">
+                  Name
+                </label>
                 <input
                   placeholder="Type your name"
                   type="text"
-                  className={`border w-full outline-none  py-2 px-3 ${
+                  className={`input input-bordered w-full ${
                     errors.name
-                      ? " border-red-500 focus:border-red-500"
-                      : "focus:border-slate-700 border-slate-300"
+                      ? "input-error focus:input-error"
+                      : "focus:input-primary"
                   }`}
                   {...register("name", {
                     required: {
@@ -81,22 +83,20 @@ export default function Signup() {
                   })}
                 />
                 {errors.name && (
-                  <span className="label-text-alt text-red-500 text-sm">
-                    {errors.name.message}
-                  </span>
+                  <p className="text-xs text-red-500">{errors.name.message}</p>
                 )}
               </div>
               <div>
-                <h3 className="poppins text-base font-medium mb-2 mt-5  ">
+                <label className="block text-base font-medium text-slate-700">
                   Email
-                </h3>
+                </label>
                 <input
                   placeholder="Type your email"
                   type="email"
-                  className={`border w-full outline-none  py-2 px-3 ${
+                  className={`input input-bordered w-full ${
                     errors.email
-                      ? " border-red-500 focus:border-red-500"
-                      : "focus:border-slate-700 border-slate-300"
+                      ? "input-error focus:input-error"
+                      : "focus:input-primary"
                   }`}
                   {...register("email", {
                     required: {
@@ -110,53 +110,52 @@ export default function Signup() {
                   })}
                 />
                 {errors.email && (
-                  <span className="label-text-alt text-red-500 text-sm">
-                    {errors.email.message}
-                  </span>
+                  <p className="text-xs text-red-500">{errors.email.message}</p>
                 )}
               </div>
               <div>
-                <h3 className="poppins text-base font-medium mb-2 mt-5 ">
+                <label className="block text-base font-medium text-slate-700">
                   Password
-                </h3>
-                <div className="relative">
-                  <input
-                    placeholder="Type your password"
-                    type="password"
-                    className={`border w-full outline-none py-2 px-3 ${
-                      errors.password
-                        ? " border-red-500 focus:border-red-500"
-                        : "focus:border-slate-700 border-slate-300"
-                    }`}
-                    {...register("password", {
-                      required: {
-                        value: true,
-                        message: "Password is required",
-                      },
-                      minLength: {
-                        value: 6,
-                        message: "Must be 6 characters or longer",
-                      },
-                    })}
-                  />
-                </div>
+                </label>
+                <input
+                  placeholder="Type your password"
+                  type="password"
+                  className={`input input-bordered w-full ${
+                    errors.password
+                      ? "input-error focus:input-error"
+                      : "focus:input-primary"
+                  }`}
+                  {...register("password", {
+                    required: {
+                      value: true,
+                      message: "Password is required",
+                    },
+                    minLength: {
+                      value: 5,
+                      message: "Must be 5 characters or longer",
+                    },
+                  })}
+                />
                 {errors.password && (
-                  <span className="label-text-alt text-red-500 text-sm">
+                  <p className="text-xs text-red-500">
                     {errors.password.message}
-                  </span>
+                  </p>
                 )}
               </div>
-              <input
+              <button
                 disabled={isLoading}
-                className="bg-violet-600 text-white mt-5 w-full py-2 text-lg poppins font-semibold cursor-pointer uppercase"
+                className={`btn btn-primary w-full text-white text-lg ${
+                  isLoading ? "opacity-60 cursor-not-allowed" : ""
+                }`}
                 type="submit"
-                value="Signup"
-              />
+              >
+                {isLoading ? "Signing Up..." : "Signup"}
+              </button>
               <Link
                 to="/login"
-                className="mt-7 block poppins cursor-pointer hover:underline"
+                className="mt-4 text-sm text-slate-700 hover:underline block"
               >
-                Login
+                Login here
               </Link>
             </div>
           </form>

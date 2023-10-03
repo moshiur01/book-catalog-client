@@ -12,7 +12,7 @@ export default function HomeBook() {
   const { data: allBooks, isLoading, isError } = useGetBooksQuery(queryString);
   const { data } = allBooks || {};
 
-  const newData = data?.slice(0, 10);
+  const newData = data?.slice().reverse().slice(0, 10);
 
   let content = null;
 
